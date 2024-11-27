@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-
+// Esto es constante es para ver como sale cuando nosotros agregamos y para iniciar el setAnimalesEstado
 const animalesIniciales = [
   { id: 1, nombre: "Canguro",especie:"Mamifero",edad:"24",sexo:"Masculino" },
 ];
 
+//contador para incrementar
 let contadorID = 2;
 
+// Funcion animal donde mostramos Animal,especie,edad,genero.
 function Animal({ animal, onDelete }) {
   return (
     <div>
@@ -21,13 +23,16 @@ function Animal({ animal, onDelete }) {
   );
 }
 
+//Funcion principal donde vamos a  agregar nuevos elemento a la lista de animales
 export default function AnimalList() {
+  //Usamos estado para manegar los nuevo Animales.
   const [animalesEstado, setAnimalesEstado] = useState(animalesIniciales);
   const [nuevoNombre, setNuevoNombre] = useState("");
   const [nuevaEspecie, setNuevaEspecie] = useState("");
   const [nuevaEdad, setNuevaEdad] = useState("");
   const [nuevoGenero, setNuevoGenero] = useState("");
 
+  //Funcion agregar
   function AgregarAnimal(e) {
     e.preventDefault();
 
@@ -51,6 +56,7 @@ export default function AnimalList() {
       setNuevoGenero("");
     }
   }
+  //Funcion booorrar
 
   function handleDelete(animalID) {
     setAnimalesEstado(animalesEstado.filter((animal) => animal.id !== animalID));

@@ -1,12 +1,13 @@
 import { useImmer } from "use-immer";
 import { useState } from "react";
 
+//libros inicicales
 const librosIniciales = [
   { id: 1, nombre: "libro1"},
   { id: 2, nombre: "libro2"},
   { id: 3, nombre: "libro3"}
 ];
-
+//funcion libro
 function Book({ libro, onDelete, onEdit, onSave }) {
   const [newName, setNewName] = useState(libro.nombre);
 
@@ -35,16 +36,18 @@ function Book({ libro, onDelete, onEdit, onSave }) {
     </div>
   );
 }
-
+//funcion principal Library
 export default function Library() {
   const [librosEstado,setLibrosEstado] = useImmer(librosIniciales);
 
+
+  //eliminar 
   function handleDelete(idLibro) {
     setLibrosEstado((draft) =>
       draft.filter((libro) => libro.id !== idLibro)
     );
   }
-
+//editar libro
   function handleEdit(idLibro) {
     setLibrosEstado((draft) => {
       const libro = draft.find((l) => l.id === idLibro);
@@ -53,7 +56,7 @@ export default function Library() {
       }
     });
   }
-
+//guardar libro
   function handleSave(idLibro, newName) {
     setLibrosEstado((draft) => {
       const libro = draft.find((l) => l.id === idLibro);
@@ -63,7 +66,7 @@ export default function Library() {
       }
     });
   }
-
+//lista libro
   return (
     <div>
       <h4>Lista de libros</h4>
